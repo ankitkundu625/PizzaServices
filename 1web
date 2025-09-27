@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome to the Pizza World</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Simple, self-contained styling */
+    :root{
+      --bg1: #FFEDD5; /* light warm */
+      --bg2: #FFE4E6; /* pinkish */
+      --accent: #D97706; /* taco/pizza orange */
+      --dark: #1F2937;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--dark)}
+    .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:48px}
+    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);border-radius:18px;box-shadow:0 10px 30px rgba(31,41,55,0.12);max-width:980px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:24px;padding:28px}
+    .hero{padding:12px 6px}
+    h1{font-size:clamp(28px,4vw,48px);margin:0 0 10px;line-height:1.03}
+    .subtitle{font-size:1.05rem;color:#374151;margin-bottom:16px}
+    p.lead{margin:0 0 18px;font-weight:500;color:#4B5563}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:linear-gradient(90deg,var(--accent),#FB923C);border:none;color:white;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(217,119,6,0.18)}
+    .btn.ghost{background:transparent;color:var(--dark);border:2px solid rgba(31,41,55,0.06);box-shadow:none;font-weight:600}
+    .visual{display:flex;align-items:center;justify-content:center;padding:12px}
+    .pizza-wrap{width:100%;height:100%;max-width:380px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:26px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.7));border:1px solid rgba(31,41,55,0.03)}
+    .pizza{font-size:96px;line-height:1;margin-bottom:12px}
+    .peace-note{font-size:0.95rem;color:#6B7280;text-align:center}
+    footer{margin-top:18px;font-size:0.85rem;color:#6B7280;text-align:center}
+    @media (max-width:880px){.card{grid-template-columns:1fr;padding:18px}.visual{order:-1}.pizza{font-size:72px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main class="card" role="main" aria-labelledby="main-heading">
+      <section class="hero">
+        <h1 id="main-heading">Welcome to the <span style="color:var(--accent)">Pizza World</span></h1>
+        <div class="subtitle">A world of peace — one slice at a time 🍕</div>
+        <p class="lead">This is a cheerful single-page site created to welcome visitors. Use it as a starting point for a bigger pizza-themed site, or keep it simple and share the good vibes.</p>
+        <div class="cta">
+          <button class="btn" onclick="alert('Welcome — enjoy a virtual slice!')">Get a slice</button>
+          <button class="btn ghost" onclick="copyText()">Copy welcome text</button>
+        </div>
+        <footer>Made with love for everyone who loves pizza and peace.</footer>
+      </section>
+
+      <aside class="visual" aria-hidden="false">
+        <div class="pizza-wrap">
+          <div class="pizza" aria-hidden="true">🍕</div>
+          <div class="peace-note"><strong>"A world of peace"</strong><br> Share a slice, share a smile.</div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    function copyText(){
+      const text = 'Welcome to the Pizza World. A world of peace';
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(text).then(()=>{
+          alert('Copied to clipboard: "' + text + '"');
+        }).catch(()=>{ fallbackCopy(text);});
+      } else { fallbackCopy(text); }
+    }
+    function fallbackCopy(text){
+      const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); alert('Copied to clipboard: "' + text + '"'); }catch(e){ alert('Could not copy automatically — select and copy: ' + text); }
+      ta.remove();
+    }
+  </script>
+</body>
+</html>
