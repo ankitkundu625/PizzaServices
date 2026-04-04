@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome to the Pizza World</title>
+
+  <!-- Google Font (will load from Google) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: #ffecd2;
+      --bg2: #fcb69f;
+      --accent: #d94f2a;
+      --card: rgba(255,255,255,0.85);
+      --glass: rgba(255,255,255,0.12);
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--bg1) 0%, var(--bg2) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:#222;
+    }
+
+    /* Subtle animated diagonal stripes */
+    .pattern {
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.06) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.06) 75%, transparent 75%, transparent);
+      background-size: 56px 56px;
+      pointer-events:none;
+      opacity:0.8;
+      animation: slide 30s linear infinite;
+    }
+    @keyframes slide {
+      from { transform: translateY(0) rotate(0.01deg); }
+      to   { transform: translateY(-1000px) rotate(0.01deg); }
+    }
+
+    .container{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:40px 20px;
+    }
+
+    .card{
+      width:100%;
+      max-width:920px;
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.82));
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      padding:36px;
+      display:flex;
+      gap:28px;
+      align-items:center;
+      backdrop-filter: blur(6px);
+    }
+
+    .visual{
+      flex:0 0 220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      border-radius:14px;
+      padding:18px;
+    }
+
+    .content{
+      flex:1;
+    }
+
+    h1{
+      margin:0 0 10px 0;
+      font-size: clamp(22px, 4.6vw, 40px);
+      line-height:1.05;
+      letter-spacing: -0.5px;
+      color: #2b2b2b;
+    }
+
+    p.lead{
+      margin:0 0 16px 0;
+      font-weight:500;
+      color:#3b3b3b;
+      opacity:0.95;
+    }
+
+    .cta{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      appearance:none;
+      border:0;
+      padding:10px 14px;
+      font-weight:600;
+      border-radius:10px;
+      cursor:pointer;
+      background:linear-gradient(90deg, var(--accent), #ff7b4a);
+      color:white;
+      box-shadow: 0 6px 18px rgba(217,79,42,0.25);
+    }
+
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:none;
+      font-weight:600;
+    }
+
+    .small{
+      margin-top:8px;
+      font-size:13px;
+      color:#444;
+      opacity:0.9;
+    }
+
+    /* Responsive */
+    @media (max-width:720px){
+      .card{
+        flex-direction:column;
+        padding:24px;
+        gap:18px;
+      }
+      .visual{ width:100%; flex:0 0 auto; padding:14px; }
+      .cta{ width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="pattern" aria-hidden="true"></div>
+
+  <main class="container" role="main">
+    <article class="card" aria-labelledby="title">
+      <div class="visual" aria-hidden="true">
+        <!-- Friendly pizza SVG -->
+        <svg width="160" height="160" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="slice of pizza icon">
+          <defs>
+            <radialGradient id="cheese" cx="50%" cy="40%">
+              <stop offset="0%" stop-color="#fff6d6"/>
+              <stop offset="100%" stop-color="#ffd66b"/>
+            </radialGradient>
+          </defs>
+
+          <!-- crust -->
+          <circle cx="100" cy="100" r="86" fill="#d99a4a"/>
+          <!-- cheese slice (triangle) -->
+          <path d="M22 40 L178 40 L100 170 Z" fill="url(#cheese)" stroke="#f0c06a" stroke-width="1"/>
+          <!-- pepperoni -->
+          <circle cx="82" cy="88" r="12" fill="#b33b2f"/>
+          <circle cx="120" cy="95" r="14" fill="#c64539"/>
+          <circle cx="100" cy="125" r="10" fill="#a9342b"/>
+          <!-- herbs -->
+          <ellipse cx="110" cy="72" rx="4" ry="2" fill="#3d7a2f"/>
+          <ellipse cx="86" cy="110" rx="3.3" ry="1.6" fill="#3d7a2f" />
+          <ellipse cx="64" cy="78" rx="3.8" ry="1.7" fill="#3d7a2f" />
+        </svg>
+      </div>
+
+      <div class="content">
+        <h1 id="title">Welcome to the pizza world. A world of peace</h1>
+        <p class="lead">Simple, warm, and made for sharing — because good pizza brings people together.</p>
+
+        <div class="cta" role="group" aria-label="actions">
+          <button class="btn" onclick="alert('May your slice be warm and your day peaceful 🍕')">Get a Slice</button>
+          <button class="btn secondary" onclick="document.getElementById('title').scrollIntoView({behavior:'smooth'})">Back to Top</button>
+        </div>
+
+        <p class="small">Tip: save this file as <code>index.html</code> and open it in your browser.</p>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    // Tiny playful entrance animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const card = document.querySelector('.card');
+      card.style.transform = 'translateY(10px)';
+      card.style.opacity = '0';
+      setTimeout(() => {
+        card.style.transition = 'all 650ms cubic-bezier(.2,.9,.2,1)';
+        card.style.transform = 'translateY(0)';
+        card.style.opacity = '1';
+      }, 80);
+    });
+  </script>
+</body>
+</html>
